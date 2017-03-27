@@ -78,7 +78,7 @@ void gerenciadorDeTarefas(){
   system("clear || cls");
   int resp;
   printf("1 Aplicativos em execução\n2 Desistalar Aplicativo \n3 Gerenciador de memória ");
-  printf("\nSelecione uma opicao: " );
+  printf("\nSelecione uma opção: " );
   scanf("%d",&resp);
   switch(resp){
     case 1: print(runing,runingTam);
@@ -114,7 +114,7 @@ int inserir(tApp *vetorA,int tamanho, tApp *vetorB, int indice){
   
   for(i=0; i < tamanho; i ++){
     if(strcmp(vetorA[i].nome, vetorB[indice].nome)==0){
-      printf("Aplicativo já se encontra foi intalado em seu MobileED\n");
+      printf("Aplicativo já se encontra foi instalado em seu MobileED\n");
       return tamanho; //se estiver instalado
     }
   }
@@ -147,8 +147,8 @@ int main( ){
   while (a) {
     
     printf("\t\t\t MobilED Home\n\n" );
-    printf("\n\n  1-Area de trabalho.\n  2-StoreED\n  3-Gerenciador de tatefas\n  0-Dsligar\n\n" );
-    printf("\nSelecione uma opicao: " );
+    printf("\n\n  1-Área  de trabalho.\n  2-StoreED\n  3-Gerenciador de rerefas\n  0-Desligar\n\n" );
+    printf("\nSelecione uma opção: " );
     
     scanf("%d",&option);
     
