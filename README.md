@@ -1,2 +1,2 @@
-### Universidade Federal do Piauí - UFPI 
-### Bachaerlado em ciência da computação
+### Federal University of Piaui
+### Bachelor of Science in Computer Science
