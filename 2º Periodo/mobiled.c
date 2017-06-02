@@ -213,11 +213,7 @@ int main( )
 			print(Installed, InstalledTam);
 			if(InstalledTam != 0)
 			{
-				printf("\n\nQua	/*
-	função responsavel por ler os aplicativos da loja que se encontram no arquivo .txt
-	parametros: não recebe
-	retorno: numero de linhas do arquivo(1 aplicativo por linha)
-	*/l o Aplicativo a ser Executado:\n");
+				printf("\n\nQual o Aplicativo a ser Executado:\n");
 				scanf("%d", &resp);
 				runingTam = inserir(runing, runingTam, Installed, resp - 1);
 				printf("\n\n");
