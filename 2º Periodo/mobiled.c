@@ -20,7 +20,7 @@ int read() //OK
 	retorno: numero de linhas do arquivo(1 aplicativo por linha)
 	*/
 
-	int count;
+	int count = 0;
 	FILE *arq;
 	arq = fopen("apps.txt", "r");
 	if(arq == NULL)
