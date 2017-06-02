@@ -170,11 +170,7 @@ void gerenciadorDeTarefas()
 		print(Installed, InstalledTam);
 		if(InstalledTam != 0)
 		{
-			printf("qual o Aplicativo a ser d	/* função responsavel por inserir de forma ordenada um elemento em um vetor;
-	*prarametros: vetorA(vetor que sera inserido a variavel),int tamanho(tamanho do vetorA),
-	*tApp *vetorB(vetor que contem a viavel a ser inserida no vetorA), int indice(indice da estrutura dentro do vetorB)
-	* retorno: tamanho atualizado do vetorA
-	*/esinstalado?");
+			printf("qual o Aplicativo a ser instalado?");
 			scanf("%d", &resp);	
 
 			for(i = 0; i < runingTam; i++)
