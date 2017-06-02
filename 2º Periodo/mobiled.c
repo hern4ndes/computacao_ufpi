@@ -6,6 +6,7 @@ typedef struct
 	char  nome[20];
 	int tamanho;
 } tApp;
+
 tApp storeApp[20];
 tApp Installed[20];
 tApp runing[20];
@@ -37,6 +38,11 @@ int read() //OK
 
 int StoreED( )
 {
+	/*
+	Função que Mostra a Storeed
+	parametros: Não tem 	 
+	retorno: Aplicativo a ser instalado 
+	*/
 
 	int length;
 	int cod, i;
@@ -56,6 +62,11 @@ int StoreED( )
 
 void print(tApp  *vetor, int tamanho)
 {
+	/*
+	função responsavel por mostrar os aplicativos de um vertor
+	parametros: Vertor e o tamanho do mesmo
+	retorno: Não tem
+	*/
 	int i = 0;
 	char resp;
 	system("clear || cls");
@@ -69,60 +80,6 @@ void print(tApp  *vetor, int tamanho)
 		printf("\t\t%d %s \n", i + 1, vetor[i].nome, vetor[i].tamanho);
 	}
 }
-int remover(tApp *vetor, int tamanho, int indice)
-{
-	int i;
-	if(vetor[indice].tamanho > 0)
-	{
-		for(i = indice; i < tamanho; i++)
-		{
-			vetor[i - 1] = vetor[i];
-		}
-		tamanho --;
-	}
-	return tamanho;
-}
-void gerenciadorDeTarefas()
-{
-	system("clear || cls");
-	int resp, i = 0;
-	printf("\t\t\tGerenciador De Tarefas\n\n\n\n");
-	printf("\t\t1-Aplicativos em execução\n\t\t2-Desistalar Aplicativo \n");
-	printf("\n\n\tSelecione uma Opção: " );
-	scanf("%d", &resp);
-	switch(resp)
-	{
-	case 1:
-		print(runing, runingTam);
-		if(runingTam != 0)
-		{
-			printf("\t\tqual o Aplicativo a ser fechado?");
-			scanf("%d", &resp);
-			printf("\t\t%s será fechado\n", runing[resp - 1].nome);
-			runingTam = remover(runing, runingTam, resp - 1);
-		}
-		break;
-	case 2:
-		print(Installed, InstalledTam);
-		if(InstalledTam != 0)
-		{
-			printf("qual o Aplicativo a ser desinstalado?");
-			scanf("%d", &resp);
-
-			for(i = 0; i < runingTam; i++)
-			{
-				if (strcmp(Installed[resp - 1].nome, runing[i].nome) == 0)
-				{
-					runingTam = remover(runing, runingTam, i);
-					break;
-				}
-			}
-			InstalledTam = remover(Installed, InstalledTam, resp - 1);
-		}
-		break;
-	}
-}
-
 int inserir(tApp *vetorA, int tamanho, tApp *vetorB, int indice)
 {
 	/* função responsavel por inserir de forma ordenada um elemento em um vetor;
@@ -164,9 +121,81 @@ int inserir(tApp *vetorA, int tamanho, tApp *vetorB, int indice)
 	{
 		printf("Aplicativo nao encontrado\n" );
 	}
-
 	return tamanho;
 }
+int remover(tApp *vetor, int tamanho, int indice)
+	/* função responsavel por remorver de forma ordenada um elemento em um vetor;
+	*prarametros: vetor(vetor que sera removido a variavel),int tamanho(tamanho do vetor),e o indice onde se encontra o elemento a ser removido
+	* retorno: tamanho atualizado do vetor
+	*/
+
+{
+	int i;
+	if(vetor[indice].tamanho > 0)
+	{
+		for(i = indice; i < tamanho; i++)
+		{
+			vetor[i - 1] = vetor[i];
+		}
+		tamanho --;
+	}
+	return tamanho;
+}
+void gerenciadorDeTarefas()
+{
+	/*
+	função responsavel desinstalar e encerrar aplicativos
+	parametros: Não recebe
+	retorno:Não tem
+	*/
+	system("clear || cls");
+	int resp, i = 0;
+	printf("\t\t\tGerenciador De Tarefas\n\n\n\n");
+	printf("\t\t1-Aplicativos em execução\n\t\t2-Desistalar Aplicativo \n");
+	printf("\n\n\tSelecione uma Opção: " );
+	scanf("%d", &resp);
+	switch(resp)
+	{
+	case 1:
+		print(runing, runingTam);
+		if(runingTam != 0)
+		{
+			printf("\t\tqual o Aplicativo a ser fechado?");
+			scanf("%d", &resp);
+			printf("\t\t%s será fechado\n", runing[resp - 1].nome);
+			runingTam = remover(runing, runingTam, resp - 1);
+		}
+		break;
+	case 2:
+		print(Installed, InstalledTam);
+		if(InstalledTam != 0)
+		{
+			printf("qual o Aplicativo a ser d	/* função responsavel por inserir de forma ordenada um elemento em um vetor;
+	*prarametros: vetorA(vetor que sera inserido a variavel),int tamanho(tamanho do vetorA),
+	*tApp *vetorB(vetor que contem a viavel a ser inserida no vetorA), int indice(indice da estrutura dentro do vetorB)
+	* retorno: tamanho atualizado do vetorA
+	*/esinstalado?");
+			scanf("%d", &resp);	
+
+			for(i = 0; i < runingTam; i++)
+			{
+				if (strcmp(Installed[resp - 1].nome, runing[i].nome) == 0)
+				{
+					runingTam = remover(runing, runingTam, i);
+					break;
+				}
+			}
+			InstalledTam = remover(Installed, InstalledTam, resp - 1);
+		}
+		break;
+	}
+}
+
+	/* função responsavel por inserir de forma ordenada um elemento em um vetor;
+	*prarametros: vetorA(vetor que sera inserido a variavel),int tamanho(tamanho do vetorA),
+	*tApp *vetorB(vetor que contem a viavel a ser inserida no vetorA), int indice(indice da estrutura dentro do vetorB)
+	* retorno: tamanho atualizado do vetorA
+	*/
 
 int main( )
 {
@@ -188,31 +217,27 @@ int main( )
 			print(Installed, InstalledTam);
 			if(InstalledTam != 0)
 			{
-				printf("\n\nQual o Aplicativo a ser Executado:\n");
+				printf("\n\nQua	/*
+	função responsavel por ler os aplicativos da loja que se encontram no arquivo .txt
+	parametros: não recebe
+	retorno: numero de linhas do arquivo(1 aplicativo por linha)
+	*/l o Aplicativo a ser Executado:\n");
 				scanf("%d", &resp);
 				runingTam = inserir(runing, runingTam, Installed, resp - 1);
 				printf("\n\n");
 			}
 			break;
-
 		case 2:
 			cod = StoreED();
 			InstalledTam = inserir(Installed, InstalledTam, storeApp, cod);
 			break;
-
 		case 3:
 			gerenciadorDeTarefas();
 			break;
 		case 0:
 			a = 0;
 			break;
-
 		}
-
-
-
-	
-
 	}
 	return 0;
 }
