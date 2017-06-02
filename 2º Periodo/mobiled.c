@@ -18,7 +18,7 @@ int read(){//OK
   parametros: não recebe
   retorno: numero de linhas do arquivo(1 aplicativo por linha)
   */
-  
+
   int count;
   FILE *arq;
   arq = fopen("apps.txt", "r");
@@ -30,21 +30,21 @@ int read(){//OK
   }
   fclose(arq);
   return(count);
-  
+
 }
 
 int StoreED( ){
-  
+
   int length;
   int cod,i;
   system("clear || cls");
-  
-  printf("\t\t\t StoreED \n" );
+
+  printf("\t\t\t StoreED \n\n\n\n" );
   length = read();
   for(i = 0; i < length;i++){
-    printf("%d %s  %d \n",i+1,storeApp[i].nome , storeApp[i].tamanho);
+    printf("\t\t%d %s  %d \n",i+1,storeApp[i].nome , storeApp[i].tamanho);
   }
-  printf("Selecione um aplicativo para instalar: ");
+  printf("\n\nSelecione um aplicativo para instalar: ");
   scanf("%d",&cod);
   system("clear || cls");
   return cod-1;
@@ -53,39 +53,42 @@ int StoreED( ){
 
 
 void print(tApp  *vetor, int tamanho){
-  
+
   int i = 0;
   char resp;
   system("clear || cls");
   if(tamanho == 0){
-    printf("Não foram encontadas aplicações\n\n\n");
-    
+    printf("\t\tNenhum aplicativo instaldo\n\n\n");
+
   }
-  
+
   for(i = 0;i < tamanho;i++){
-    printf("%d %s \n",i+1,vetor[i].nome, vetor[i].tamanho);
+    printf("\t\t%d %s \n",i+1,vetor[i].nome, vetor[i].tamanho);
   }
 }
 int remover(tApp *vetor, int tamanho, int indice){
   int i;
+  if(vetor[indice].tamanho> 0){
   for(i = indice; i < tamanho;i++){
-    vetor[i-1] = vetor[i]; 
+    vetor[i-1] = vetor[i];
   }
-  tamanho --;  
+  tamanho --;
+}
   return tamanho;
 }
 void gerenciadorDeTarefas(){
   system("clear || cls");
-  int resp;
-  printf("1 Aplicativos em execução\n2 Desistalar Aplicativo \n3 Gerenciador de memória ");
-  printf("\nSelecione uma opicao: " );
+  int resp, i = 0;
+  printf("\t\t\tGerenciador De Tarefas\n\n\n\n");
+  printf("\t\t1-Aplicativos em execução\n\t\t2-Desistalar Aplicativo \n");
+  printf("\n\n\tSelecione uma Opção: " );
   scanf("%d",&resp);
   switch(resp){
     case 1: print(runing,runingTam);
     if(runingTam!=0){
-      printf("qual o Aplicativo a ser fechado?");
+      printf("\t\tqual o Aplicativo a ser fechado?");
       scanf("%d",&resp);
-      printf("%s será fechado\n",runing[resp-1].nome);
+      printf("\t\t%s será fechado\n",runing[resp-1].nome);
       runingTam = remover(runing, runingTam,resp-1);
     }
     break;
@@ -93,47 +96,56 @@ void gerenciadorDeTarefas(){
     if(InstalledTam!=0){
       printf("qual o Aplicativo a ser desinstalado?");
       scanf("%d",&resp);
-      printf("%s será desinstalado\n",Installed[resp-1].nome);
+
+      for(i = 0; i < runingTam; i++){
+        if (strcmp(Installed[resp-1].nome, runing[i].nome)==0) {
+            runingTam = remover(runing, runingTam,i);
+            break;
+        }
+      }
       InstalledTam = remover(Installed, InstalledTam,resp-1);
     }
     break;
-    case 3: printf("%d Aplicativos instalados",InstalledTam);
   }
-  
-  
-  
+
+
 }
 
 int inserir(tApp *vetorA,int tamanho, tApp *vetorB, int indice){
   /* função responsavel por inserir de forma ordenada um elemento em um vetor;
   *prarametros: vetorA(vetor que sera inserido a variavel),int tamanho(tamanho do vetorA),
-  *tApp *vetorB(vetor que contem a viavel a ser inserida), int indice(indice da estrutura dentro do vetorB)
+  *tApp *vetorB(vetor que contem a viavel a ser inserida no vetorA), int indice(indice da estrutura dentro do vetorB)
   * retorno: tamanho atualizado do vetorA
   */
-  int i,j;	
-  
+  int i,j;
+if(vetorB[indice].tamanho> 0){
+
   for(i=0; i < tamanho; i ++){
     if(strcmp(vetorA[i].nome, vetorB[indice].nome)==0){
-      printf("Aplicativo já se encontra foi intalado em seu MobileED\n");
+      printf("\tAplicativo já se encontra foi instalado em seu MobileED\n\n\n");
       return tamanho; //se estiver instalado
     }
   }
-  
-  
+
+
   if(tamanho == 0){
     vetorA[0] = vetorB[indice];
-    
+
   }else{
     for(i = 0; i < tamanho;i++){
       if(vetorA[i].tamanho > vetorB[indice].tamanho ) break;
     }
     for(j = tamanho;j>i;j--){
       vetorA[j] = vetorA[j-1];
-      
+
     }
     vetorA[i] = vetorB[indice];
   }
   tamanho++;
+}else{
+  printf("Aplicativo nao encontrado\n" );
+}
+
   return tamanho;
 }
 
@@ -143,45 +155,46 @@ int main( ){
   int i;
   int cod;
   int tamanho = 0;
-  
+
   while (a) {
-    
+
+
     printf("\t\t\t MobilED Home\n\n" );
-    printf("\n\n  1-Area de trabalho.\n  2-StoreED\n  3-Gerenciador de tatefas\n  0-Dsligar\n\n" );
-    printf("\nSelecione uma opicao: " );
-    
+    printf("\n\n\t\t 1-Area de trabalho.\n\t\t 2-StoreED\n\t\t 3-Gerenciador de tatefas\n\t\t 0-Desligar\n\n" );
+    printf("\n\tSelecione uma Opção: " );
+
     scanf("%d",&option);
-    
-    
+
+
     switch (option) {
-      
+
       case 1:
       print(Installed, InstalledTam);
       if(InstalledTam != 0){
-        printf("Qual o Aplicativo a ser Executado:\n");
+        printf("\n\nQual o Aplicativo a ser Executado:\n");
         scanf("%d",&resp);
         runingTam = inserir(runing,runingTam,Installed,resp-1);
-        printf("\n\n")
+        printf("\n\n");
       }
       break;
+
       case 2: cod = StoreED();
       InstalledTam = inserir(Installed,InstalledTam,storeApp,cod);
-      printf("%s Instalado com sucesso \n\n\n",storeApp[cod].nome);
-      
       break;
+
       case 3: gerenciadorDeTarefas();
       break;
       case 0: a = 0;
       break;
-      
+
     }
-    
-    
-    
+
+
+
     /* code */
-    
+
     //  StoreED(numApps);
-    
+
   }
   return 0;
 }
