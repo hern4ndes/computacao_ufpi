@@ -52,12 +52,11 @@ int StoreED( )
 {
 	/*
 	Função que Mostra a Storeed
-	parametros: Não tem 	 
-	retorno: Aplicativo a ser instalado 
+	parametros: Não tem
+	retorno: Aplicativo a ser instalado
 	*/
 
-	int length;
-	int cod, i;
+	int length = 0, cod = 0 , i = 0;
 	system("clear || cls");
 
 	printf("\t\t\t StoreED \n\n\n\n" );
@@ -99,7 +98,7 @@ int inserir(tApp *vetorA, int tamanho, tApp *vetorB, int indice)
 	*tApp *vetorB(vetor que contem a viavel a ser inserida no vetorA), int indice(indice da estrutura dentro do vetorB)
 	* retorno: tamanho atualizado do vetorA
 	*/
-	int i, j;
+	int i = 0, j = 0;
 	if(vetorB[indice].tamanho > 0)
 	{
 		for(i = 0; i < tamanho; i ++)
@@ -145,9 +144,9 @@ int remover(tApp *vetor, int tamanho, int indice)
 	int i;
 	if(vetor[indice].tamanho > 0)
 	{
-		for(i = indice; i < tamanho; i++)
+		for(i = indice; i < tamanho-1; i++)
 		{
-			vetor[i - 1] = vetor[i];
+			vetor[i] = vetor[i + 1];
 		}
 		tamanho --;
 	}
@@ -163,7 +162,7 @@ void gerenciadorDeTarefas()
 	system("clear || cls");
 	int resp, i = 0;
 	printf("\t\t\tGerenciador De Tarefas\n\n\n\n");
-	printf("\t\t1-Aplicativos em execução\n\t\t2-Desistalar Aplicativo \n");
+	printf("\t\t1-Aplicativos em execução\n\t\t2-desinstalar Aplicativo \n");
 	printf("\n\n\tSelecione uma Opção: " );
 	scanf("%d", &resp);
 	switch(resp)
@@ -182,8 +181,8 @@ void gerenciadorDeTarefas()
 		print(Installed, InstalledTam);
 		if(InstalledTam != 0)
 		{
-			printf("qual o Aplicativo a ser instalado?");
-			scanf("%d", &resp);	
+			printf("qual o Aplicativo a ser desinstalado?");
+			scanf("%d", &resp);
 
 			for(i = 0; i < runingTam; i++)
 			{
@@ -208,15 +207,12 @@ void gerenciadorDeTarefas()
 int main( )
 {
 	setlocale(LC_ALL, "Portuguese");
-	int option, a = 1, resp;
-	int i;
-	int cod;
-	int tamanho = 0;
+	int option, a = 1, resp = 0, i = 0, cod = 0, tamanho = 0;
 
 	while (a)
 	{
 		printf("\t\t\t MobilED Home\n\n" );
-		printf("\n\n\t\t 1-Area de trabalho.\n\t\t 2-StoreED\n\t\t 3-Gerenciador de tatefas\n\t\t 0-Desligar\n\n" );
+		printf("\n\n\t\t 1-Área de trabalho.\n\t\t 2-StoreED\n\t\t 3-Gerenciador de tarefas \n\t\t 0-Desligar\n\n" );
 		printf("\n\tSelecione uma Opção: " );
 		scanf("%d", &option);
 		switch (option)
