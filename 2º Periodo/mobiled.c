@@ -13,27 +13,38 @@ tApp runing[20];
 
 int storeAppTam = 0, InstalledTam = 0, runingTam = 0; // tamanho dos vetores
 
-int read() //OK
-{
+int read(){
 	/*
-	função responsavel por ler os aplicativos da loja que se encontram no arquivo .txt
-	parametros: não recebe
-	retorno: numero de linhas do arquivo(1 aplicativo por linha)
+	Função responsavel por ler os aplicativos da loja que se encontram no arquivo .txt
+	Parametros: não recebe
+	Retorno: numero de linhas do arquivo(1 aplicativo por linha)
+	Estrutura Usada na implementação:
 	*/
-
-	int count = 0;
+	int  indice = 0, i = 0, j = 0;
+	tApp temp;
 	FILE *arq;
 	arq = fopen("apps.txt", "r");
 	if(arq == NULL)
 		printf("Erro, nao foi possivel abrir o arquivo\n");
 	else
-		while( (fscanf(arq, "%s %d \n", storeApp[count].nome , &storeApp[count].tamanho)) != EOF )
+		while( (fscanf(arq, "%s %d \n", temp.nome , &temp.tamanho)) != EOF )
 		{
-			count ++;
+			if(indice == 0){
+				storeApp[0] = temp;
+			}else{
+				for(i = 0; i < indice; i++){
+					if(storeApp[i].tamanho > temp.tamanho ) break;
+				}
+				for(j = indice; j > i; j--)
+				{
+					storeApp[j] = storeApp[j - 1];
+				}
+				storeApp[i] = temp;
+			}
+			indice++;
 		}
 	fclose(arq);
-	return(count);
-
+	return(indice);
 }
 
 int StoreED( )
