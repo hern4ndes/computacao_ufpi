@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 
 typedef struct
@@ -79,7 +80,6 @@ void print(tApp  *vetor, int tamanho)
 	retorno: Não tem
 	*/
 	int i = 0;
-	char resp;
 	system("clear || cls");
 	if(tamanho == 0)
 	{
@@ -88,7 +88,7 @@ void print(tApp  *vetor, int tamanho)
 	}
 	for(i = 0; i < tamanho; i++)
 	{
-		printf("\t\t%d %s \n", i + 1, vetor[i].nome, vetor[i].tamanho);
+		printf("\t\t%d %s - %dmb \n", i + 1, vetor[i].nome, vetor[i].tamanho);
 	}
 }
 int inserir(tApp *vetorA, int tamanho, tApp *vetorB, int indice)
@@ -203,15 +203,31 @@ void gerenciadorDeTarefas()
 	*tApp *vetorB(vetor que contem a viavel a ser inserida no vetorA), int indice(indice da estrutura dentro do vetorB)
 	* retorno: tamanho atualizado do vetorA
 	*/
+void desktop(tApp  *vetor, int tamanho){
+	int i = 0;
+	system("clear || cls");
+	if(tamanho == 0)
+	{
+		printf("\t\tNenhum aplicativo na área de trabalho.\n\t\tInstale aplicativos na StoreED\n\n\n");
 
+	}
+	for(i = 0; i < tamanho; i++)
+	{
+		if((i%3)==0){
+			printf("\n");
+		}
+		printf("\t%d %s - %dmb ", i + 1, vetor[i].nome, vetor[i].tamanho);
+	}
+}
 int main( )
 {
 	setlocale(LC_ALL, "Portuguese");
-	int option, a = 1, resp = 0, i = 0, cod = 0, tamanho = 0;
+	int option, a = 1, resp = 0, cod = 0;
 
 	while (a)
 	{
 		printf("\t\t\t MobilED Home\n\n" );
+		desktop(Installed, InstalledTam);
 		printf("\n\n\t\t 1-Área de trabalho.\n\t\t 2-StoreED\n\t\t 3-Gerenciador de tarefas \n\t\t 0-Desligar\n\n" );
 		printf("\n\tSelecione uma Opção: " );
 		scanf("%d", &option);
