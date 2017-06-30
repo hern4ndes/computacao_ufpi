@@ -17,10 +17,10 @@ int storeAppTam = 0, InstalledTam = 0, runingTam = 0; // tamanho dos vetores
 
 int read(){
 	/*
-	Função responsavel por ler os aplicativos da loja que se encontram no arquivo .txt
-	Parametros: não recebe
+	Fun��o responsavel por ler os aplicativos da loja que se encontram no arquivo .txt
+	Parametros: n�o recebe
 	Retorno: numero de linhas do arquivo(1 aplicativo por linha)
-	Estrutura Usada na implementação:
+	Estrutura Usada na implementa��o:
 	*/
 	int  indice = 0, i = 0, j = 0;
 	tApp temp;
@@ -52,8 +52,8 @@ int read(){
 int StoreED( )
 {
 	/*
-	Função que Mostra a Storeed
-	parametros: Não tem
+	Fun��o que Mostra a Storeed
+	parametros: N�o tem
 	retorno: Aplicativo a ser instalado
 	*/
 
@@ -75,9 +75,9 @@ int StoreED( )
 void print(tApp  *vetor, int tamanho)
 {
 	/*
-	função responsavel por mostrar os aplicativos de um vertor
+	fun��o responsavel por mostrar os aplicativos de um vertor
 	parametros: Vertor e o tamanho do mesmo
-	retorno: Não tem
+	retorno: N�o tem
 	*/
 	int i = 0;
 	system("clear || cls");
@@ -93,7 +93,7 @@ void print(tApp  *vetor, int tamanho)
 }
 int inserir(tApp *vetorA, int tamanho, tApp *vetorB, int indice)
 {
-	/* função responsavel por inserir de forma ordenada um elemento em um vetor;
+	/* fun��o responsavel por inserir de forma ordenada um elemento em um vetor;
 	*prarametros: vetorA(vetor que sera inserido a variavel),int tamanho(tamanho do vetorA),
 	*tApp *vetorB(vetor que contem a viavel a ser inserida no vetorA), int indice(indice da estrutura dentro do vetorB)
 	* retorno: tamanho atualizado do vetorA
@@ -105,7 +105,7 @@ int inserir(tApp *vetorA, int tamanho, tApp *vetorB, int indice)
 		{
 			if(strcmp(vetorA[i].nome, vetorB[indice].nome) == 0)
 			{
-				printf("\tAplicativo já se encontra foi instalado em seu MobileED\n\n\n");
+				printf("\tAplicativo j� se encontra foi instalado em seu MobileED leED\n\n\n");
 				return tamanho; //se estiver instalado
 			}
 		}
@@ -134,14 +134,14 @@ int inserir(tApp *vetorA, int tamanho, tApp *vetorB, int indice)
 	}
 	return tamanho;
 }
-int remover(tApp *vetor, int tamanho, int indice)
-	/* função responsavel por remorver de forma ordenada um elemento em um vetor;
+int remover(tApp *vetor, int tamanho, int indice){
+	/* fun��o responsavel por remorver de forma ordenada um elemento em um vetor;
 	*prarametros: vetor(vetor que sera removido a variavel),int tamanho(tamanho do vetor),e o indice onde se encontra o elemento a ser removido
 	* retorno: tamanho atualizado do vetor
 	*/
 
-{
-	int i;
+	int i =0 ;
+	if(indice  < tamanho){
 	if(vetor[indice].tamanho > 0)
 	{
 		for(i = indice; i < tamanho-1; i++)
@@ -150,20 +150,22 @@ int remover(tApp *vetor, int tamanho, int indice)
 		}
 		tamanho --;
 	}
+
+	}
 	return tamanho;
 }
 void gerenciadorDeTarefas()
 {
 	/*
-	função responsavel desinstalar e encerrar aplicativos
-	parametros: Não recebe
-	retorno:Não tem
+	fun��o responsavel desinstalar e encerrar aplicativos
+	parametros: N�o recebe
+	retorno:N�o tem
 	*/
 	system("clear || cls");
 	int resp, i = 0;
 	printf("\t\t\tGerenciador De Tarefas\n\n\n\n");
-	printf("\t\t1-Aplicativos em execução\n\t\t2-desinstalar Aplicativo \n");
-	printf("\n\n\tSelecione uma Opção: " );
+	printf("\t\t1-Aplicativos em execu��o\n\t\t2-desinstalar Aplicativo \n");
+	printf("\n\n\tSelecione uma Op��o: " );
 	scanf("%d", &resp);
 	switch(resp)
 	{
@@ -173,7 +175,7 @@ void gerenciadorDeTarefas()
 		{
 			printf("\t\tqual o Aplicativo a ser fechado?");
 			scanf("%d", &resp);
-			printf("\t\t%s será fechado\n", runing[resp - 1].nome);
+			printf("\t\t%s ser� fechado\n", runing[resp - 1].nome);
 			runingTam = remover(runing, runingTam, resp - 1);
 		}
 		break;
@@ -198,7 +200,7 @@ void gerenciadorDeTarefas()
 	}
 }
 
-	/* função responsavel por inserir de forma ordenada um elemento em um vetor;
+	/* fun��o responsavel por inserir de forma ordenada um elemento em um vetor;
 	*prarametros: vetorA(vetor que sera inserido a variavel),int tamanho(tamanho do vetorA),
 	*tApp *vetorB(vetor que contem a viavel a ser inserida no vetorA), int indice(indice da estrutura dentro do vetorB)
 	* retorno: tamanho atualizado do vetorA
@@ -208,7 +210,7 @@ void desktop(tApp  *vetor, int tamanho){
 	system("clear || cls");
 	if(tamanho == 0)
 	{
-		printf("\t\tNenhum aplicativo na área de trabalho.\n\t\tInstale aplicativos na StoreED\n\n\n");
+		printf("\t\tNenhum aplicativo na �rea de trabalho.\n\t\tInstale aplicativos na StoreED\n\n\n");
 
 	}
 	for(i = 0; i < tamanho; i++)
@@ -226,10 +228,10 @@ int main( )
 
 	while (a)
 	{
-		printf("\t\t\t MobilED Home\n\n" );
+		printf("\t\t\t MobileED lED Home\n\n" );
 		desktop(Installed, InstalledTam);
-		printf("\n\n\t\t 1-Área de trabalho.\n\t\t 2-StoreED\n\t\t 3-Gerenciador de tarefas \n\t\t 0-Desligar\n\n" );
-		printf("\n\tSelecione uma Opção: " );
+		printf("\n\n\t\t 1-Aplicativos instalados\n\t\t 2-StoreED\n\t\t 3-Gerenciador de tarefas \n\t\t 0-Desligar\n\n" );
+		printf("\n\tSelecione uma Op��o: " );
 		scanf("%d", &option);
 		switch (option)
 		{
